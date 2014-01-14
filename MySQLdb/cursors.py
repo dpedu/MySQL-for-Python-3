@@ -158,11 +158,11 @@ class BaseCursor(object):
                 query = query.decode();
 
             if isinstance(args, dict):
-                query = query.format( **db.literal(args) )
+                query = query % db.literal(args)
             elif isinstance(args, tuple) or isinstance(args, list):
-                query = query.format( *db.literal(args) )
+                query = query % db.literal(args)
             else:
-                query = query.format( db.literal(args) )
+                query = query % db.literal(args)
 
         if isinstance(query, str):
             query = query.encode(charset);
